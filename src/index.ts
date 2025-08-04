@@ -3,8 +3,11 @@ import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 
 dotenv.config();
+
+const DATABASE_URI = process.env.DATABASE_URI
 
 const app = express();
 app.use(cors());
@@ -32,6 +35,12 @@ io.on('connection', (socket) => {
     console.log('🔴 User disconnected:', socket.id);
   });
 });
+
+mongoose.connect(DATABASE_URI!)
+.then(res =>{
+  console.log('connected')
+})
+.catch(err => console.log('not connected'))
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
