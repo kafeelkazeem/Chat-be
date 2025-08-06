@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import AuthRoute from './routes/authRoute'
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 const server = http.createServer(app);
+
+app.use('/api', AuthRoute)
 
 const io = new Server(server, {
   cors: {

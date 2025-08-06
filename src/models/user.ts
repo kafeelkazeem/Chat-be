@@ -1,11 +1,10 @@
 import mongoose, { Document, Schema, Types } from 'mongoose';
 
-
 // Define the TypeScript interface for a User document.
 export interface IUser extends Document {
   username: string;
   email: string;
-  passwordHash: string;
+  password: string;
   profilePicture?: string | null;
   lastActive: Date;
   createdAt: Date;
@@ -27,7 +26,7 @@ const UserSchema: Schema = new Schema({
       trim: true,
       lowercase: true,
     },
-    passwordHash: {
+    password: {
       type: String,
       required: true,
     },
