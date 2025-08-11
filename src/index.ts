@@ -25,17 +25,19 @@ const io = new Server(server, {
   },
 });
 
-// Socket.IO logic
+// Socket.IO connection handling
 io.on('connection', (socket) => {
-  console.log('🟢 User connected:', socket.id);
+  console.log('A new user connected via Socket.IO:', socket.id);
 
-  socket.on('sendMessage', (data) => {
-    console.log('📨 Message received:', data);
-    io.emit('receiveMessage', data); // broadcast to all
+  // When a user joins a chat room, subscribe them to that room.
+  socket.on('joinRoom', (chatRoomId) => {
+    socket.join(chatRoomId);
+    console.log(`User ${socket.id} joined room ${chatRoomId}`);
   });
 
+  // Handle disconnection
   socket.on('disconnect', () => {
-    console.log('🔴 User disconnected:', socket.id);
+    console.log('User disconnected from Socket.IO:', socket.id);
   });
 });
 
