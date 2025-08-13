@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import AuthRoute from './routes/authRoute'
+import MessageRoute from './routes/messageRoute'
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 const server = http.createServer(app);
 
 app.use('/api', AuthRoute)
+app.use('/api', MessageRoute)
 
 const io = new Server(server, {
   cors: {
