@@ -46,3 +46,18 @@ export const sendMessage = (io: SocketIOServer) => {
         }
     };
 };
+
+export const getMessage = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {chatRoomId} = req.params
+        const chatRoom = await ChatRoom.findById(chatRoomId);
+        if (!chatRoom) {
+            return res.status(404).json({ error: 'Chat room not found.' });
+        }
+        const messages = await Message.find({ chatRoomId }).sort({ createdAt: 1 }).populate('senderId', 'username displayName profilePicture');
+        res.status(200).json({data: messages})
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: 'An internal server error occurred.' });
+    }
+}
