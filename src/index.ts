@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import AuthRoute from './routes/authRoute'
 import MessageRoute from './routes/messageRoute'
+import ChatRoomRoute from './routes/ChatRoomRoute'
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ const server = http.createServer(app);
 
 app.use('/api', AuthRoute)
 app.use('/api', MessageRoute)
+app.use('/api', ChatRoomRoute)
 
 const io = new Server(server, {
   cors: {
