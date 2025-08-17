@@ -18,6 +18,6 @@ const valLogin = [
 ]
 
 router.post('/signup', valUser, isValid, signup)
-router.post('/login', valLogin, isValid, login)
+router.post('/signin', valLogin, isValid, login)
 
 export default router
