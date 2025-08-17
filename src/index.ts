@@ -7,12 +7,12 @@ import mongoose from 'mongoose';
 import AuthRoute from './routes/authRoute';
 import MessageRoute from './routes/messageRoute';
 import ChatRoomRoute from './routes/ChatRoomRoute';
-import jwt from 'jsonwebtoken'; // Import jsonwebtoken
+import jwt from 'jsonwebtoken'; 
 
 dotenv.config();
 
 const DATABASE_URI = process.env.DATABASE_URI;
-const JWT_SECRET = process.env.JWT_SECRET; // Ensure you have this in your .env file
+const JWT_SECRET = process.env.JWT_SECRET; 
 
 const app = express();
 app.use(cors());
