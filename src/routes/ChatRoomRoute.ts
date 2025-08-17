@@ -5,7 +5,6 @@ import { createChatRoom } from '../controllers/chatRoom'
 const router = express.Router()
 
 const valCreateChatRoom = [
-    body('chatRoomId').notEmpty().isMongoId(),
     body('participant').notEmpty().isArray(),
     body('type').notEmpty().isString(),
     body('lastMessage').notEmpty().isString()
